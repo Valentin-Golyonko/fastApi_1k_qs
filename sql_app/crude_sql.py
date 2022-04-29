@@ -42,7 +42,9 @@ def get_debug_v3(db_session: Session,
                  limit: int,
                  ) -> List[Optional[models.Product]]:
     try:
-        data = db_session.query(models.Product).offset(skip).limit(limit).all()
+        data = db_session.query(models.Product).offset(skip).limit(limit)  # .all()
+        # for i in data:
+        #     i.low_price
         return []
     except Exception as ex:
         logger.exception(f"get_debug_v3(): query Ex;"
