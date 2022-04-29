@@ -59,6 +59,8 @@ greenlet==1.1.2
     # via
     #   gevent
     #   sqlalchemy
+gunicorn==20.1.0
+    # via -r requirements.in
 h11==0.13.0
     # via uvicorn
 httptools==0.4.0
