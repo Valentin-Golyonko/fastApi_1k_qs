@@ -1,7 +1,7 @@
 import logging
 from typing import Optional, List
 
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, load_only
 
 from sql_app import models
 
@@ -27,10 +27,18 @@ def get_debug_v1(db_session: Session,
     try:
         return db_session.query(
             models.Product
-        ).offset(skip).limit(limit).with_entities(
+        ).offset(skip).limit(limit).options(
+            load_only(
+                models.Product.low_price,
+                models.Product.high_price,
+            )
+        )
+        """
+        or .with_entities(
             models.Product.low_price,
             models.Product.high_price,
         ).all()
+        """
     except Exception as ex:
         logger.exception(f"get_debug_v1(): query Ex;"
                          f" {ex = }")

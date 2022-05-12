@@ -44,8 +44,8 @@ def api_debug_v1(skip: int = 0,
 
     products = crude_sql.get_debug_v1(db_session, skip=skip, limit=limit)
     for product in products:
-        out_data['low_price'].append(product[0])
-        out_data['high_price'].append(product[1])
+        out_data['low_price'].append(product.low_price)
+        out_data['high_price'].append(product.high_price)
 
     return out_data
 
